@@ -1,7 +1,7 @@
 {
   "watch": [
     {
-      "dir": "test/example.json",
+      "dir": "test",
       "recursive": true
     }
   ],
