@@ -8,7 +8,7 @@ on:
 permissions: write-all
 
 jobs:
-  bundle_on_commit:
+  publish-on-tag:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

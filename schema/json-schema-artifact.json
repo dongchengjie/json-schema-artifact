@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema",
   "$id": "https://github.com/dongchengjie/json-schema-artifact/json-schema-artifact.json",
   "type": "object",
-  "additionalProperties": false,
+  "additionalProperties": true,
   "required": ["build"],
   "properties": {
     "watch": {
