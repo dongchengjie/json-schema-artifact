@@ -1,0 +1,34 @@
+name: publish on tag
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions: write-all
+
+jobs:
+  bundle_on_commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure Git
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Bundle JSON Schemas
+        run: npm install && npm run test
+
+      - name: NPM Release
+        run: npm publish --access public --tag latest
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

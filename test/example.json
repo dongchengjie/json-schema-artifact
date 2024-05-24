@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "description": "user info",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "./modules/basic.json"
+    },
+    {
+      "$ref": "./modules/contact.json"
+    }
+  ]
+}

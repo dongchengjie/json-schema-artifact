@@ -1,0 +1,18 @@
+{
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "prettier.configPath": ".prettierrc",
+  "json.schemas": [
+    {
+      "url": "./schema/json-schema-artifact.json",
+      "fileMatch": ["json-schema-artifact.json"]
+    }
+  ],
+  "files.exclude": {
+    ".gitattributes": true
+  }
+}

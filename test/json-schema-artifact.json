@@ -1,0 +1,20 @@
+{
+  "watch": [
+    {
+      "dir": "test/example.json",
+      "recursive": true
+    }
+  ],
+  "build": {
+    "target": [
+      {
+        "input": "test/example.json",
+        "output": "dist/example.json"
+      }
+    ],
+    "optimize": {
+      "format": "minify",
+      "refsDerefer": true
+    }
+  }
+}
