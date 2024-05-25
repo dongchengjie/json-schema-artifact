@@ -8,9 +8,9 @@ npm install --save-dev json-schema-artifact
 
 1. Create a file named `json-schema-artifact.json` in the workspace root.
 
-> `watch` is used for monitoring directory/file changes and rebundling.
+- This configuration implies monitoring all files in the `src` directory and triggering a rebuild when changes occur. The build process utilizes `src/example.json` as input and produces `dist/example.json` as output.
 
-> `build` is used for bundling your JSON Schema.
+- If you have any i18n (internationalization) requirements, you can configure the `locale` field to specify the language file to be used (in JSON format). Then define keys in the format of **t(\`key\`)** in source files.This will produce additional output files based on configured locales.
 
 ```json
 {
@@ -26,6 +26,10 @@ npm install --save-dev json-schema-artifact
       {
         "input": "src/example.json",
         "output": "dist/example.json"
+        // "locale": {
+        //   "ru": "test/locales/ru.json",
+        //   "fa": "test/locales/fa.json"
+        // }
       }
     ],
     "optimize": {
