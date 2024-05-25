@@ -10,7 +10,9 @@ npm install --save-dev json-schema-artifact
 
 - This configuration implies monitoring all files in the `src` directory and triggering a rebuild when changes occur. The build process utilizes `src/example.json` as input and produces `dist/example.json` as output.
 
-- If you have any i18n (internationalization) requirements, you can configure the `locale` field to specify the language file to be used (in JSON format). Then define keys in the format of **t(\`key\`)** in source files.This will produce additional output files based on configured locales.
+- If you have any internationalization (i18n) requirements, you can configure the locale field to specify the language file(in JSON format) to be used. In your source files, define keys in the format of **t(\`key\`)**. If the corresponding key is not found in the language file, the key itself will be used as a fallback. This process will generate additional output files based on the configured locales.
+
+- You can find an example [here](https://github.com/dongchengjie/json-schema-artifact/tree/main/test).
 
 ```json
 {
@@ -33,20 +35,20 @@ npm install --save-dev json-schema-artifact
       }
     ],
     "optimize": {
-      "format": "minify",
+      "format": "minify", // or pretty
       "refsDerefer": true
     }
   }
 }
 ```
 
-2. Start coding with `watch` on.
+2. Start coding your JSON Schema with `watch` on.
 
 ```bash
 npx json-schema-artifact --watch
 ```
 
-You can add the following configurations to the `.vscode/settings.json` file for validation and modifications.
+You can include the following similar configurations in the `.vscode/settings.json` file for validation.
 
 ```json
   "json.schemas": [
@@ -57,7 +59,7 @@ You can add the following configurations to the `.vscode/settings.json` file for
   ],
 ```
 
-3. Bundle JSON Schema.
+3. Bundle JSON Schema and check the output.
 
 ```bash
 npx json-schema-artifact

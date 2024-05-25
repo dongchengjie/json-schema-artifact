@@ -35,7 +35,7 @@ const buldle = async (input: string, output: string, optimize: Optimize, verbose
 };
 
 const println = (message: string, verbose: boolean) => {
-  if (verbose) console.log(message);
+  if (verbose) console.info(message);
 };
 
 export default buldle;

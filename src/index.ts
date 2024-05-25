@@ -57,14 +57,14 @@ const args = yargs
       if ("dir" in item) {
         fs.watch(item.dir, { recursive: item.recursive ?? true }, (event, filename) => {
           if (event === "change") {
-            console.log(`📝 Changes in file: ${path.join(item.dir, filename)}`);
+            console.info(`📝 Changes in file: ${path.join(item.dir, filename)}`);
             onBuild(false);
           }
         });
       } else if ("file" in item) {
         fs.watch(item.file, event => {
           if (event === "change") {
-            console.log(`📝 Changes in file: ${item.file}`);
+            console.info(`📝 Changes in file: ${item.file}`);
             onBuild(false);
           }
         });

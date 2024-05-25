@@ -56,7 +56,7 @@ const args = yargs_1.default
             if ("dir" in item) {
                 fs_extra_1.default.watch(item.dir, { recursive: item.recursive ?? true }, (event, filename) => {
                     if (event === "change") {
-                        console.log(`📝 Changes in file: ${path_1.default.join(item.dir, filename)}`);
+                        console.info(`📝 Changes in file: ${path_1.default.join(item.dir, filename)}`);
                         onBuild(false);
                     }
                 });
@@ -64,7 +64,7 @@ const args = yargs_1.default
             else if ("file" in item) {
                 fs_extra_1.default.watch(item.file, event => {
                     if (event === "change") {
-                        console.log(`📝 Changes in file: ${item.file}`);
+                        console.info(`📝 Changes in file: ${item.file}`);
                         onBuild(false);
                     }
                 });

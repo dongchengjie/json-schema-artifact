@@ -4,7 +4,7 @@ const translate = (text, localeDict) => {
     // find all translations
     const translations = rawTranslations(text).map(translation => ({
         ...translation,
-        replacement: localeDict.get(translation.key) ?? translation.original,
+        replacement: localeDict.get(translation.key) ?? translation.replacement,
     }));
     // replace key with locale value
     translations.forEach(translation => {
@@ -17,7 +17,7 @@ const rawTranslations = (input) => {
     const regex = /t\(`(.*?)`\)/gm;
     return (input.match(regex) ?? []).map((original) => {
         const key = original.replace(regex, "$1");
-        const replacement = original; // original is equal to replacement by default
+        const replacement = key; // original is equal to key by default
         return { original, key, replacement };
     });
 };
