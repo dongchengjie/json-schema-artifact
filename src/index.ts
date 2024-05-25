@@ -5,6 +5,7 @@ import fs from "fs-extra";
 import path from "path";
 import yargs from "yargs";
 import { Args } from "./lib/types";
+import localize from "./lib/locale";
 
 // command line args definition
 const appName = "json-schema-artifact";
@@ -40,7 +41,13 @@ const args = yargs
   // define operations on build
   const onBuild = async (verbose: boolean) => {
     for (let item of config.build.target) {
+      // bundle JSON Schema
       await bundle(item.input, item.output, config.build.optimize, verbose);
+      // localize JSON Schema
+      const locales = { ...item.locale };
+      for (let locale in locales) {
+        localize(item.output, locale, locales[locale]);
+      }
     }
   };
 

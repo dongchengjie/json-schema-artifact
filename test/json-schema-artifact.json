@@ -1,4 +1,5 @@
 {
+  "$schema": "../schema/json-schema-artifact.json",
   "watch": [
     {
       "dir": "test",
@@ -9,7 +10,12 @@
     "target": [
       {
         "input": "test/example.json",
-        "output": "dist/example.json"
+        "output": "dist/example.json",
+        "locale": {
+          "en": "test/locales/en.json",
+          "ru": "test/locales/ru.json",
+          "zh": "test/locales/zh.json"
+        }
       }
     ],
     "optimize": {

@@ -1,5 +1,5 @@
 export type Args = {
-  watch: (WatchDirectory | WatchFile)[]; // directories or files to watch
+  watch?: (WatchDirectory | WatchFile)[]; // directories or files to watch
   build: {
     target: Target[]; // target to build
     optimize?: Optimize; // optimization options
@@ -18,6 +18,9 @@ export type WatchFile = {
 export type Target = {
   input: string; // JSON Schema input
   output: string; // JSON Schema output
+  locale?: {
+    [name: string]: string;
+  }; // locale for translation
 };
 
 export type Optimize = {
