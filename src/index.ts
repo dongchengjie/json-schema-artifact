@@ -55,19 +55,31 @@ const args = yargs
   if (watch && Array.isArray(config.watch) && config.watch.length > 0) {
     for (let item of config.watch) {
       if ("dir" in item) {
-        fs.watch(item.dir, { recursive: item.recursive ?? true }, (event, filename) => {
+        fs.watch(item.dir, { recursive: item.recursive ?? true }, async (event, filename) => {
           if (event === "change") {
-            console.info(`📝 Changes in file: ${path.join(item.dir, filename)}`);
-            onBuild(false);
+            try {
+              const file = path.join(item.dir, filename);
+              console.info(`🔄 Changes in file: ${file} at ${new Date().toISOString()}`);
+              await onBuild(false);
+            } catch (error) {
+              console.error(error);
+            }
           }
         });
+        console.info(`👀 Watching changes ${item.recursive ? "recursively" : ""} in dir: ${item.dir}`);
       } else if ("file" in item) {
-        fs.watch(item.file, event => {
+        fs.watch(item.file, async event => {
           if (event === "change") {
-            console.info(`📝 Changes in file: ${item.file}`);
-            onBuild(false);
+            try {
+              const file = item.file;
+              console.info(`🔄 Changes in file: ${file} at ${new Date().toISOString()}`);
+              await onBuild(false);
+            } catch (error) {
+              console.error(error);
+            }
           }
         });
+        console.info(`👀 Watching changes in file: ${item.file}`);
       }
     }
   } else {
