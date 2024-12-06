@@ -1,10 +1,13 @@
 {
   "name": "json-schema-artifact",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "JSON Schema bundler",
   "keywords": [
     "json-schema",
     "bundler"
+  ],
+  "files": [
+    "bin"
   ],
   "main": "bin/index.js",
   "bin": {
@@ -23,17 +26,27 @@
     "url": "https://github.com/dongchengjie/json-schema-artifact"
   },
   "scripts": {
-    "test": "tsc && npm uninstall -g json-schema-artifact && npm install -g . && json-schema-artifact --config test/json-schema-artifact.json"
+    "test": "npx tsc && npm uninstall -g json-schema-artifact && npm install -g . && json-schema-artifact --config test/json-schema-artifact.json"
   },
   "dependencies": {
-    "@apidevtools/json-schema-ref-parser": "^11.6.2",
+    "@apidevtools/json-schema-ref-parser": "^11.7.3",
+    "@commitlint/cli": "^19.6.0",
+    "@commitlint/config-conventional": "^19.6.0",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "fs-extra": "^11.2.0",
-    "prettier": "^3.2.5",
-    "yargs": "^17.7.2"
+    "lefthook": "^1.8.5",
+    "prettier": "^3.4.2",
+    "yargs": "^17.0.33"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
-    "@types/node": "^20.12.12",
-    "@types/yargs": "^17.0.32"
+    "@types/node": "^22.10.1",
+    "@types/yargs": "^17.0.33",
+    "typescript": "^5.7.2"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   }
 }

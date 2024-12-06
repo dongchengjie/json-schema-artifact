@@ -1,11 +1,10 @@
 #!/usr/bin/env node
-
-import bundle from "./lib/bundle";
 import fs from "fs-extra";
 import path from "path";
 import yargs from "yargs";
-import { Args } from "./lib/types";
+import bundle from "./lib/bundle";
 import localize from "./lib/locale";
+import { Args } from "./lib/types";
 
 // command line args definition
 const appName = "json-schema-artifact";
@@ -16,14 +15,14 @@ const args = yargs
     type: "string",
     describe: `specify the location of the ${appName} file`,
     demandOption: false,
-    default: `${appName}.json`,
+    default: `${appName}.json`
   })
   .option("w", {
     alias: "watch",
     type: "boolean",
     describe: "watch for changes and regenerate artifacts",
     demandOption: false,
-    default: false,
+    default: false
   })
   .detectLocale(false)
   .wrap(120).argv;
@@ -66,7 +65,9 @@ const args = yargs
             }
           }
         });
-        console.info(`👀 Watching changes ${item.recursive ? "recursively" : ""} in dir: ${item.dir}`);
+        console.info(
+          `👀 Watching changes ${item.recursive ? "recursively" : ""} in dir: ${item.dir}`
+        );
       } else if ("file" in item) {
         fs.watch(item.file, async event => {
           if (event === "change") {

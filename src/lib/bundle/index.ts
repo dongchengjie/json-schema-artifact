@@ -1,8 +1,9 @@
-import $RefParser = require("@apidevtools/json-schema-ref-parser");
-import derefer from "./derefer";
-import format from "../format";
 import fs from "fs-extra";
+import format from "../format";
 import { Optimize } from "../types";
+import derefer from "./derefer";
+
+import $RefParser = require("@apidevtools/json-schema-ref-parser");
 
 const buldle = async (input: string, output: string, optimize: Optimize, verbose: boolean) => {
   println(`📦 Bundling file: ${input}`, verbose);
@@ -20,7 +21,7 @@ const buldle = async (input: string, output: string, optimize: Optimize, verbose
         schema = JSON.stringify(JSONSchema);
         break;
       case "pretty":
-        schema = await format(JSON.stringify(JSONSchema), "json");
+        schema = await format(JSON.stringify(JSONSchema));
         break;
       default:
         schema = JSON.stringify(JSONSchema);

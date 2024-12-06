@@ -1,5 +1,6 @@
-import $RefParser = require("@apidevtools/json-schema-ref-parser");
 import format from "../format";
+
+import $RefParser = require("@apidevtools/json-schema-ref-parser");
 
 /**
  * indirect refs dereference
@@ -8,14 +9,16 @@ import format from "../format";
  * @returns JSON Schema with indirect refs derefered
  */
 const derefer = async (JSONSchema: $RefParser.JSONSchema) => {
-  let jsonStr = await format(JSON.stringify(JSONSchema), "json");
+  let jsonStr = await format(JSON.stringify(JSONSchema));
 
   // get all references
   let refs = references(jsonStr);
 
   let indirectRefs: { path: string; target: any }[];
   // get indirect reference
-  while ((indirectRefs = refs.map(ref => indirectReferences(JSONSchema, ref)).filter(Boolean)).length > 0) {
+  while (
+    (indirectRefs = refs.map(ref => indirectReferences(JSONSchema, ref)).filter(Boolean)).length > 0
+  ) {
     indirectRefs.forEach(reference => {
       // replace indirect reference with it's actual target
       jsonStr = jsonStr.replaceAll(reference.path, reference.target);
@@ -50,7 +53,7 @@ const indirectReferences = (jsonObject: any, ref: string): { path: string; targe
       if (typeof next === "object" && next["$ref"] && Object.keys(next).length === 1) {
         return {
           path: path,
-          target: next["$ref"],
+          target: next["$ref"]
         };
       }
     }

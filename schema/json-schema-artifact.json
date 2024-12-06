@@ -18,14 +18,20 @@
             "required": ["dir"],
             "properties": {
               "dir": { "description": "directory to watch", "type": "string", "minLength": 1 },
-              "recursive": { "description": "recursively watch subdirectories", "type": "boolean", "default": true }
+              "recursive": {
+                "description": "recursively watch subdirectories",
+                "type": "boolean",
+                "default": true
+              }
             }
           },
           {
             "type": "object",
             "additionalProperties": false,
             "required": ["file"],
-            "properties": { "file": { "description": "file to watch", "type": "string", "minLength": 1 } }
+            "properties": {
+              "file": { "description": "file to watch", "type": "string", "minLength": 1 }
+            }
           }
         ]
       }
@@ -50,7 +56,11 @@
               "locale": {
                 "description": "locale for translation",
                 "type": "object",
-                "additionalProperties": { "description": "locale file location", "type": "string", "minLength": 1 }
+                "additionalProperties": {
+                  "description": "locale file location",
+                  "type": "string",
+                  "minLength": 1
+                }
               }
             }
           }
@@ -60,7 +70,11 @@
           "type": "object",
           "additionalProperties": false,
           "properties": {
-            "refsDerefer": { "description": "indirect refs dereference", "type": "boolean", "default": true },
+            "refsDerefer": {
+              "description": "indirect refs dereference",
+              "type": "boolean",
+              "default": true
+            },
             "format": {
               "type": "string",
               "description": "output format",

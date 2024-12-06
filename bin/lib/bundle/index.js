@@ -3,10 +3,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const $RefParser = require("@apidevtools/json-schema-ref-parser");
-const derefer_1 = __importDefault(require("./derefer"));
-const format_1 = __importDefault(require("../format"));
 const fs_extra_1 = __importDefault(require("fs-extra"));
+const format_1 = __importDefault(require("../format"));
+const derefer_1 = __importDefault(require("./derefer"));
+const $RefParser = require("@apidevtools/json-schema-ref-parser");
 const buldle = async (input, output, optimize, verbose) => {
     println(`📦 Bundling file: ${input}`, verbose);
     await $RefParser.bundle(input).then(async (JSONSchema) => {
@@ -21,7 +21,7 @@ const buldle = async (input, output, optimize, verbose) => {
                 schema = JSON.stringify(JSONSchema);
                 break;
             case "pretty":
-                schema = await (0, format_1.default)(JSON.stringify(JSONSchema), "json");
+                schema = await (0, format_1.default)(JSON.stringify(JSONSchema));
                 break;
             default:
                 schema = JSON.stringify(JSONSchema);

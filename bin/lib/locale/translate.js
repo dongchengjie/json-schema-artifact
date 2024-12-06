@@ -4,7 +4,7 @@ const translate = (text, localeDict) => {
     // find all translations
     const translations = rawTranslations(text).map(translation => ({
         ...translation,
-        replacement: localeDict.get(translation.key) ?? translation.replacement,
+        replacement: localeDict.get(translation.key) ?? translation.replacement
     }));
     // replace key with locale value
     translations.forEach(translation => {

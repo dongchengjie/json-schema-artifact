@@ -13,7 +13,9 @@ const localize = (input: string, code: string, locale: string) => {
     try {
       // read input and locale file
       const text = fs.readFileSync(input, "utf-8");
-      const localeDict = new Map<string, string>(Object.entries(JSON.parse(fs.readFileSync(locale, "utf-8"))));
+      const localeDict = new Map<string, string>(
+        Object.entries(JSON.parse(fs.readFileSync(locale, "utf-8")))
+      );
 
       // do localization
       const translated = translate(text, localeDict);

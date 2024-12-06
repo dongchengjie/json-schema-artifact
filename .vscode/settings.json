@@ -1,9 +1,10 @@
 {
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "prettier.configPath": ".prettierrc"
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    ".gitignore": ".git*,lefthook.*,eslint.config.*,prettier.config.*,.prettierignore,.npmignore,LICENSE",
+    "README.md": "README.*.md",
+    "tsconfig.json": "tsconfig.*.json",
+    "package.json": "package-lock.json,yarn.lock,pnpm-lock.yaml,bun.lockb"
+  }
 }

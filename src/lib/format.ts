@@ -1,14 +1,19 @@
-import fs from "fs-extra";
-import prettier from "prettier";
+import prettier, { type Options } from "prettier";
 
 /**
  * format the content using prettier
  * @param content content to format
- * @param parser parser to use
  * @returns formatted content
  */
-const format = async (content: string, parser: string) => {
-  const options = { parser, ...JSON.parse(fs.readFileSync(".prettierrc", "utf-8")) };
+const format = async (content: string) => {
+  const options: Options = {
+    parser: "json",
+    printWidth: 100,
+    tabWidth: 2,
+    useTabs: false,
+    trailingComma: "none",
+    endOfLine: "lf"
+  };
   return await prettier.format(content, options).then(formatted => formatted);
 };
 

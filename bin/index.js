@@ -4,10 +4,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const bundle_1 = __importDefault(require("./lib/bundle"));
 const fs_extra_1 = __importDefault(require("fs-extra"));
 const path_1 = __importDefault(require("path"));
 const yargs_1 = __importDefault(require("yargs"));
+const bundle_1 = __importDefault(require("./lib/bundle"));
 const locale_1 = __importDefault(require("./lib/locale"));
 // command line args definition
 const appName = "json-schema-artifact";
@@ -18,14 +18,14 @@ const args = yargs_1.default
     type: "string",
     describe: `specify the location of the ${appName} file`,
     demandOption: false,
-    default: `${appName}.json`,
+    default: `${appName}.json`
 })
     .option("w", {
     alias: "watch",
     type: "boolean",
     describe: "watch for changes and regenerate artifacts",
     demandOption: false,
-    default: false,
+    default: false
 })
     .detectLocale(false)
     .wrap(120).argv;

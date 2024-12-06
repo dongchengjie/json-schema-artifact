@@ -11,7 +11,7 @@ const format_1 = __importDefault(require("../format"));
  * @returns JSON Schema with indirect refs derefered
  */
 const derefer = async (JSONSchema) => {
-    let jsonStr = await (0, format_1.default)(JSON.stringify(JSONSchema), "json");
+    let jsonStr = await (0, format_1.default)(JSON.stringify(JSONSchema));
     // get all references
     let refs = references(jsonStr);
     let indirectRefs;
@@ -49,7 +49,7 @@ const indirectReferences = (jsonObject, ref) => {
             if (typeof next === "object" && next["$ref"] && Object.keys(next).length === 1) {
                 return {
                     path: path,
-                    target: next["$ref"],
+                    target: next["$ref"]
                 };
             }
         }
