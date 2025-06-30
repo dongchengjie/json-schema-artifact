@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "description": "t(`user basic info`)",
+  "type": "object",
+  "required": ["name", "age"],
+  "definitions": {
+    "name": {
+      "type": "string",
+      "description": "t(`name`)"
+    },
+    "age": {
+      "type": "integer",
+      "description": "t(`age`)"
+    }
+  },
+  "properties": {
+    "name": {
+      "$ref": "#/definitions/name"
+    },
+    "age": {
+      "$ref": "#/definitions/age"
+    }
+  }
+}

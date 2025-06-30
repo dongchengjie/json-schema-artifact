@@ -1,53 +1,30 @@
 {
-  "name": "json-schema-artifact",
-  "version": "1.1.3",
-  "description": "JSON Schema bundler",
-  "keywords": [
-    "json-schema",
-    "bundler"
-  ],
-  "files": [
-    "bin",
-    "schema"
-  ],
-  "main": "bin/index.js",
-  "bin": {
-    "json-schema-artifact": "./bin/index.js"
-  },
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org"
-  },
-  "homepage": "https://github.com/dongchengjie/json-schema-artifact",
-  "bugs": {
-    "url": "https://github.com/dongchengjie/json-schema-artifact/issues"
-  },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/dongchengjie/json-schema-artifact"
-  },
+  "name": "monorepo",
+  "private": "true",
   "scripts": {
-    "test": "npx tsc && npm uninstall -g json-schema-artifact && npm install -g . && json-schema-artifact --config test/json-schema-artifact.json"
-  },
-  "dependencies": {
-    "@apidevtools/json-schema-ref-parser": "^11.7.3",
-    "@commitlint/cli": "^19.6.0",
-    "@commitlint/config-conventional": "^19.6.0",
-    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
-    "fs-extra": "^11.2.0",
-    "lefthook": "^1.8.5",
-    "prettier": "^3.4.2",
-    "yargs": "^17.0.33"
+    "preinstall": "npx only-allow pnpm",
+    "prepare": "lefthook install",
+    "dev": "concurrently 'pnpm:dev-cli' 'pnpm:dev-playground'",
+    "dev-cli": "pnpm run -C packages/json-schema-artifact dev",
+    "dev-playground": "pnpm run -C playground dev",
+    "build": "pnpm run -C playground build"
   },
   "devDependencies": {
-    "@types/fs-extra": "^11.0.4",
-    "@types/node": "^22.10.1",
-    "@types/yargs": "^17.0.33",
-    "typescript": "^5.7.2"
+    "@commitlint/cli": "^19.6.0",
+    "@commitlint/config-conventional": "^19.6.0",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "concurrently": "^9.2.0",
+    "lefthook": "^1.11.14",
+    "prettier": "^3.6.2"
   },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
     ]
-  }
+  },
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
+  },
+  "packageManager": "pnpm@9.15.9"
 }

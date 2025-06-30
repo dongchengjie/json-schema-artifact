@@ -1,0 +1,11 @@
+{
+  "name": "playground",
+  "private": "true",
+  "scripts": {
+    "dev": "json-schema-artifact --watch",
+    "build": "json-schema-artifact"
+  },
+  "dependencies": {
+    "json-schema-artifact": "workspace:latest"
+  }
+}

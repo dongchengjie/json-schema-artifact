@@ -1,0 +1,51 @@
+{
+  "name": "json-schema-artifact",
+  "version": "2.0.0",
+  "description": "JSON Schema bundler",
+  "keywords": [
+    "json-schema",
+    "bundler"
+  ],
+  "main": "./bin/json-schema-artifact.js",
+  "bin": {
+    "json-schema-artifact": "./bin/json-schema-artifact.js"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "types": "./types/index.d.ts"
+    }
+  },
+  "files": [
+    "bin",
+    "dist",
+    "types"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "homepage": "https://github.com/dongchengjie/json-schema-artifact",
+  "bugs": {
+    "url": "https://github.com/dongchengjie/json-schema-artifact/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dongchengjie/json-schema-artifact"
+  },
+  "scripts": {
+    "dev": "rolldown --config rolldown.config.ts --watch",
+    "build": "rolldown --config rolldown.config.ts"
+  },
+  "devDependencies": {
+    "@apidevtools/json-schema-ref-parser": "^14.0.2",
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^24.0.7",
+    "chokidar": "^4.0.3",
+    "commander": "^14.0.0",
+    "consola": "^3.4.2",
+    "cosmiconfig": "^9.0.0",
+    "fs-extra": "^11.3.0",
+    "rolldown": "1.0.0-beta.22"
+  }
+}
