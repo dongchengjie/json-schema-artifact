@@ -71,7 +71,7 @@ export class Bundler {
 
 const flatten = (schema: JSONSchema) => {
   do {
-    const json = JSON.stringify(schema);
+    const json = JSON.stringify(schema, null, 2);
     const refs = getReferences(json);
     const indirectRefs = refs
       .map(ref => getIndirectReferences(schema, ref))

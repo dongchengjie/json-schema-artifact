@@ -62,7 +62,9 @@ export default defineConfig([
 
 - This configuration watches all files in `src` and `locales`, triggering rebuilds on changes.
 
-- For i18n support: Configure locales with language files. Use **t(\`key\`)** syntax in input files. Missing keys fallback to the key value. Generates locale-specific output files.
+- For i18n support:
+  1. Configure locales with language files (JSON or YAML format).
+  2. Use **t(\`key\`)** syntax in input files (Missing keys fallback to the key value).
 
 - Find an example [here](https://github.com/dongchengjie/json-schema-artifact/tree/main/playground).
 
