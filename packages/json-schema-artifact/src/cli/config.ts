@@ -46,7 +46,7 @@ export const buildBundleOptions = (config: ArtifactConfig): BundleOptions[] => {
 
     const minify = option.output.optimize?.minify ?? false;
     const dereference = option.output.optimize?.dereference ?? "flatten";
-    const watch = typeof option.watch === "boolean" ? path.dirname(input) : option.watch;
+    const watch = typeof option.watch === "boolean" ? input : option.watch;
 
     const result = { input, output, minify, dereference, watch };
 

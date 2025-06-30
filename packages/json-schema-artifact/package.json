@@ -1,6 +1,6 @@
 {
   "name": "json-schema-artifact",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "JSON Schema bundler",
   "keywords": [
     "json-schema",

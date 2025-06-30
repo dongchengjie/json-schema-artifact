@@ -25,11 +25,10 @@ export class Bundler {
           ignoreInitial: true
         });
         watcher.on("change", async path => {
-          if (path === this.options.output) return;
-
-          consola.info(`🔄 File changed: ${path} (${Date.now()})`);
+          if (path === this.options.output) return; // Prevent circular updates
 
           try {
+            consola.info(`🔄 File changed: ${path} (${Date.now()})`);
             await this.emit();
           } catch (error) {
             consola.error(error);

@@ -21,4 +21,6 @@ import { buildBundleOptions, loadConfig } from "./config";
       console.error(`Error bundling ${bundler.options.input}:`, error);
     }
   }
+
+  consola.success("All bundles completed successfully.");
 })();
