@@ -1,9 +1,11 @@
-user info: "user info"
+description: "This is a description"
 
-user basic info: "user basic info"
-name: "name"
-age: "age"
-
-user contact info: "user contact info"
-phone: "phone"
-email: "email"
+user:
+  basic:
+    title: "user basic info"
+    name: "name"
+    age: "age"
+  contact:
+    title: "user contact info"
+    phone: "phone"
+    email: "email"

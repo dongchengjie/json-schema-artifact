@@ -1,6 +1,7 @@
 import { consola } from "consola";
 import { cosmiconfig } from "cosmiconfig";
 import fs from "fs-extra";
+import { JSONPath } from "jsonpath-plus";
 import { merge } from "lodash-es";
 
 type Translation = {
@@ -42,18 +43,23 @@ export const loadLocale = async (
 };
 
 const translate = (text: string, dict: Record<string, string>, filepaths: string[]): string => {
-  const translations = parseTranslations(text).map(translation => {
-    if (!dict[translation.key]) {
-      consola.warn(`Missing translation for key "${translation.key}" in ${filepaths}`);
-      return translation;
+  const translations = parseTranslationKeys(text).map(candidate => {
+    const replacement = JSONPath({
+      path: candidate.key,
+      json: dict,
+      wrap: false,
+      ignoreEvalErrors: true
+    });
+
+    if (!replacement) {
+      consola.warn(`Missing translation for key "${candidate.key}" in ${filepaths}`);
+      return candidate;
     } else {
-      return {
-        ...translation,
-        replacement: dict[translation.key]
-      };
+      return { ...candidate, replacement };
     }
   });
 
+  // Replace original text with translations
   for (const translation of translations) {
     text = text.replace(translation.original, translation.replacement);
   }
@@ -61,7 +67,7 @@ const translate = (text: string, dict: Record<string, string>, filepaths: string
   return text;
 };
 
-const parseTranslations = (input: string): Translation[] => {
+const parseTranslationKeys = (input: string): Translation[] => {
   const regex = /t\(`(.*?)`\)/gm;
   return (input.match(regex) ?? []).map((original: string) => {
     const key = original.replace(regex, "$1");

@@ -56,6 +56,9 @@ importers:
       fs-extra:
         specifier: ^11.3.0
         version: 11.3.0
+      jsonpath-plus:
+        specifier: ^10.3.0
+        version: 10.3.0
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
@@ -198,6 +201,18 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.27':
     resolution: {integrity: sha512-VO95AxtSFMelbg3ouljAYnfvTEwSWVt/2YLf+U5Ejd8iT5mXE2Sa/1LGyvySMne2CGsepGLI7KpF3EzE3Aq9Mg==}
+
+  '@jsep-plugin/assignment@1.3.0':
+    resolution: {integrity: sha512-VVgV+CXrhbMI3aSusQyclHkenWSAm95WaiKrMxRFam3JSUiIaQjoMIw2sEs/OX4XifnqeQUN4DYbJjlA8EfktQ==}
+    engines: {node: '>= 10.16.0'}
+    peerDependencies:
+      jsep: ^0.4.0||^1.0.0
+
+  '@jsep-plugin/regex@1.0.4':
+    resolution: {integrity: sha512-q7qL4Mgjs1vByCaTnDFcBnV9HS7GVPJX5vyVoCgZHNSC9rjwIlmbXG5sUuorR5ndfHAIlJ8pVStxvjXHbNvtUg==}
+    engines: {node: '>= 10.16.0'}
+    peerDependencies:
+      jsep: ^0.4.0||^1.0.0
 
   '@napi-rs/wasm-runtime@0.2.11':
     resolution: {integrity: sha512-9DPkXtvHydrcOsopiYpUgPHpmj0HWZKMUnL2dZqpvC42lsratuBG06V5ipyno0fUek5VlFsNQ+AcFATSrJXgMA==}
@@ -519,6 +534,10 @@ packages:
     resolution: {integrity: sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==}
     hasBin: true
 
+  jsep@1.4.0:
+    resolution: {integrity: sha512-B7qPcEVE3NVkmSJbaYxvv4cHkVW7DQsZz13pUMrfS8z8Q/BuShN+gcTXrUlPiGqM2/t/EEaI030bpxMqY8gMlw==}
+    engines: {node: '>= 10.16.0'}
+
   jsesc@3.1.0:
     resolution: {integrity: sha512-/sM3dO2FOzXjKQhJuo0Q173wf2KOo8t4I8vHy6lF9poUp7bKT0/NHE8fPX23PwfhnykfqnC2xRxOnVw5XuGIaA==}
     engines: {node: '>=6'}
@@ -536,6 +555,11 @@ packages:
   jsonparse@1.3.1:
     resolution: {integrity: sha512-POQXvpdL69+CluYsillJ7SUhKvytYjW9vG/GKpnf+xP8UWgYEM/RaMzHHofbALDiKbbP1W8UEYmgGl39WkPZsg==}
     engines: {'0': node >= 0.2.0}
+
+  jsonpath-plus@10.3.0:
+    resolution: {integrity: sha512-8TNmfeTCk2Le33A3vRRwtuworG/L5RrgMvdjhKZxvyShO+mBu2fP50OWUjRLNtvw344DdDarFh9buFAZs5ujeA==}
+    engines: {node: '>=18.0.0'}
+    hasBin: true
 
   lefthook-darwin-arm64@1.11.14:
     resolution: {integrity: sha512-YPbUK6kGytY5W6aNUrzK7Vod3ynLVvj5JQiBh0DjlxCHMgIQPpFkDfwQzGw1E8CySyC95HXO83En5Ule8umS7g==}
@@ -970,6 +994,14 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.2
 
+  '@jsep-plugin/assignment@1.3.0(jsep@1.4.0)':
+    dependencies:
+      jsep: 1.4.0
+
+  '@jsep-plugin/regex@1.0.4(jsep@1.4.0)':
+    dependencies:
+      jsep: 1.4.0
+
   '@napi-rs/wasm-runtime@0.2.11':
     dependencies:
       '@emnapi/core': 1.4.3
@@ -1245,6 +1277,8 @@ snapshots:
     dependencies:
       argparse: 2.0.1
 
+  jsep@1.4.0: {}
+
   jsesc@3.1.0: {}
 
   json-parse-even-better-errors@2.3.1: {}
@@ -1258,6 +1292,12 @@ snapshots:
       graceful-fs: 4.2.11
 
   jsonparse@1.3.1: {}
+
+  jsonpath-plus@10.3.0:
+    dependencies:
+      '@jsep-plugin/assignment': 1.3.0(jsep@1.4.0)
+      '@jsep-plugin/regex': 1.0.4(jsep@1.4.0)
+      jsep: 1.4.0
 
   lefthook-darwin-arm64@1.11.14:
     optional: true

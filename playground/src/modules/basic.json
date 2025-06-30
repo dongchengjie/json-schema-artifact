@@ -1,16 +1,16 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
-  "description": "t(`user basic info`)",
+  "description": "t(`user.basic.title`)",
   "type": "object",
   "required": ["name", "age"],
   "definitions": {
     "name": {
       "type": "string",
-      "description": "t(`name`)"
+      "description": "t(`user.basic.name`)"
     },
     "age": {
       "type": "integer",
-      "description": "t(`age`)"
+      "description": "t(`user.basic.age`)"
     }
   },
   "properties": {

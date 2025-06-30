@@ -1,16 +1,16 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
-  "description": "t(`user contact info`)",
+  "description": "t(`user.contact.title`)",
   "type": "object",
   "required": ["phone"],
   "properties": {
     "phone": {
       "type": "string",
-      "description": "t(`phone`)"
+      "description": "t(`user.contact.phone`)"
     },
     "email": {
       "type": "string",
-      "description": "t(`email`)"
+      "description": "t(`user.contact.email`)"
     }
   }
 }
