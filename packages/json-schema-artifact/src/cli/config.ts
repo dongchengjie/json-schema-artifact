@@ -53,14 +53,16 @@ export const buildBundleOptions = (config: ArtifactConfig): BundleOptions[] => {
     if (typeof option.input === "object" && option.input.locales && Object) {
       const locales = Object.entries(option.input.locales);
       if (locales.length > 0) {
-        const list = locales.map(([localeCode, localePath]) => {
+        const list = locales.map(([code, paths]) => {
           const { dir, name, ext } = path.parse(output);
-          const localized = path.join(dir, `${name}-${localeCode}${ext}`);
-          const locale = path.resolve(localePath);
+          const localized = path.join(dir, `${name}-${code}${ext}`);
+          const locales = Array.isArray(paths)
+            ? paths.map(p => path.resolve(p))
+            : [path.resolve(paths)];
           return {
             ...result,
             output: localized,
-            locale
+            locales
           };
         });
         return [{ ...list[0], output }].concat(list);

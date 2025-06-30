@@ -1,7 +1,7 @@
 import { consola } from "consola";
 import { cosmiconfig } from "cosmiconfig";
 import fs from "fs-extra";
-import path from "node:path";
+import { merge } from "lodash-es";
 
 type Translation = {
   original: string;
@@ -9,30 +9,42 @@ type Translation = {
   replacement: string;
 };
 
-export const localize = async (text: string, localeFile: string) => {
-  const filepath = path.resolve(localeFile);
-  if (fs.existsSync(filepath)) {
-    try {
-      const explorer = cosmiconfig(localeFile, {
-        searchPlaces: [filepath],
-        cache: false
-      });
-      const dict = await explorer.load(filepath);
-      if (!dict) return text;
+export const localize = async (text: string, localeFiles: string[]) => {
+  try {
+    const locales = await Promise.all(localeFiles.map(loadLocale));
+    const dicts = locales.filter(dict => dict !== undefined);
+    if (dicts.length === 0) return text;
 
-      return translate(text, dict.config, filepath);
-    } catch (error: any) {
-      consola.error(`Error localizing from ${filepath}:`, error);
-    }
-  } else {
-    consola.error("Locale file does not exist:", filepath);
+    const dict = merge({}, ...dicts);
+    return translate(text, dict, localeFiles);
+  } catch (error: any) {
+    consola.error(`Error localizing from ${localeFiles}:`, error);
   }
 };
 
-const translate = (text: string, dict: Record<string, string>, filepath: string): string => {
+export const loadLocale = async (
+  localeFile: string
+): Promise<Record<string, string> | undefined> => {
+  if (fs.existsSync(localeFile)) {
+    try {
+      const explorer = cosmiconfig(localeFile, {
+        searchPlaces: [localeFile],
+        cache: false
+      });
+      const result = await explorer.load(localeFile);
+      return result?.config;
+    } catch (error: any) {
+      consola.error(`Error loading locale from ${localeFile}:`, error);
+    }
+  } else {
+    consola.error("Locale file does not exist:", localeFile);
+  }
+};
+
+const translate = (text: string, dict: Record<string, string>, filepaths: string[]): string => {
   const translations = parseTranslations(text).map(translation => {
     if (!dict[translation.key]) {
-      consola.warn(`Missing translation for key "${translation.key}" in ${filepath}`);
+      consola.warn(`Missing translation for key "${translation.key}" in ${filepaths}`);
       return translation;
     } else {
       return {

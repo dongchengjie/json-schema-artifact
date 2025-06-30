@@ -6,7 +6,7 @@ type ArtifactOptions = {
 
 type InputOptions = {
   file: string;
-  locales?: { [localeCode: string]: string };
+  locales?: { [localeCode: string]: string | string[] };
 };
 
 type OutputOptions = {

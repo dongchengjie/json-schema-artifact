@@ -7,7 +7,7 @@ import { localize } from "./locale";
 export type BundleOptions = {
   input: string;
   output: string;
-  locale?: string;
+  locales?: string[];
   minify: boolean;
   dereference?: "none" | "flatten" | "plain";
   watch?: string | string[];
@@ -55,7 +55,9 @@ export class Bundler {
       : JSON.stringify(result, null, 2);
 
     // Localize if needed
-    const localized = this.options.locale ? localize(formatted, this.options.locale) : formatted;
+    const localized = Array.isArray(this.options.locales)
+      ? localize(formatted, this.options.locales)
+      : formatted;
 
     return localized;
   }
